@@ -33,19 +33,20 @@ class ProductHttpRepository {
     return product;
   }
 
-  List<Product> updateById(int id, ProductReqDto productReqDto) {
+  Product updateById(int id, Product productReqDto) {
     //http 통신 코드
     //원래 이 코드는 필요 없음 서버랑 통신하기 때문에
     //fake data로 update해주느라 작성해본 코드
     list = list.map((product) {
       if (product.id == id) {
-        product.toProduct(productReqDto);
+        product = productReqDto;
         return product;
       } else {
         return product;
       }
     }).toList();
-    return list;
+    productReqDto.id = id;
+    return productReqDto;
   }
 
   int deleteById(int id) {

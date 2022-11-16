@@ -29,7 +29,13 @@ class ProductListViewStore extends StateNotifier<List<Product>> {
     state = state.where((product) => product.id != id).toList();
   }
 
-  void changeInformation(List<Product> products) {
-    state = products;
+  void changeInformation(Product productRespDto) {
+    state = state.map((product) {
+      if (product.id == productRespDto.id) {
+        return productRespDto;
+      } else {
+        return product;
+      }
+    }).toList();
   }
 }

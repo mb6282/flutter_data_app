@@ -10,12 +10,16 @@ void main() {
   );
 }
 
+//가장 위의 화면을 추적함
+final navigatorKey = GlobalKey<NavigatorState>();
+
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      navigatorKey: navigatorKey,
       home: ProductListView(),
     );
   }

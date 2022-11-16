@@ -30,10 +30,11 @@ class ProductListView extends ConsumerWidget {
           //이유 : 상태는 연결되어있지 않고 바깥에서 바인딩됨
           key: ValueKey(pm[index].id),
           onTap: () {
-            pc.deleteById(context, pm[index].id);
+            pc.deleteById(pm[index].id);
           },
           onLongPress: () {
-            pc.changeInformation(pm[index].id, ProductReqDto("가지", 20000));
+            pc.changeInformation(
+                pm[index].id, Product(0, "${pm[index].name}", 20000));
           },
           leading: Icon(Icons.wallet),
           title: Text(
