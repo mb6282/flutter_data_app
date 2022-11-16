@@ -1,11 +1,13 @@
 import 'package:data_app/controller/product_controller.dart';
 import 'package:data_app/domain/product/product.dart';
+import 'package:data_app/dto/Product/product_req_dto.dart';
 import 'package:data_app/views/product/list/product_list_view_store.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class ProductListPage extends ConsumerWidget {
-  const ProductListPage({Key? key}) : super(key: key);
+class ProductListView extends ConsumerWidget {
+  const ProductListView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -17,6 +19,7 @@ class ProductListPage extends ConsumerWidget {
         child: Icon(Icons.add),
         onPressed: () {
           pc.addProduct(Product(4, "호박", 4000));
+          //한줄 람다 여러줄 익명함수로 처리하자
         },
       ),
       appBar: AppBar(title: Text("product_list_page")),
@@ -27,7 +30,10 @@ class ProductListPage extends ConsumerWidget {
           //이유 : 상태는 연결되어있지 않고 바깥에서 바인딩됨
           key: ValueKey(pm[index].id),
           onTap: () {
-            pc.deleteById(pm[index].id);
+            pc.deleteById(context, pm[index].id);
+          },
+          onLongPress: () {
+            pc.changeInformation(pm[index].id, ProductReqDto("가지", 20000));
           },
           leading: Icon(Icons.wallet),
           title: Text(
