@@ -19,4 +19,8 @@ class ProductListViewStore extends StateNotifier<List<Product>> {
   void addProduct(Product productRespDto) {
     state = [...state, productRespDto];
   }
+
+  void removeProduct(int id) {
+    state = state.where((product) => product.id != id).toList();
+  }
 }

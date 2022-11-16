@@ -26,7 +26,9 @@ class ProductListPage extends ConsumerWidget {
           //상태(ful)가 같을 때 같으면 인식을 못하는데 key로 다르게 인식시킬 수 있음
           //이유 : 상태는 연결되어있지 않고 바깥에서 바인딩됨
           key: ValueKey(pm[index].id),
-          onTap: () {},
+          onTap: () {
+            pc.deleteById(pm[index].id);
+          },
           leading: Icon(Icons.wallet),
           title: Text(
             "${pm[index].name}",

@@ -24,4 +24,11 @@ class ProductController {
         _ref.read(productHttpRepository).insert(productReqDto);
     _ref.read(productListViewStore.notifier).addProduct(productRespDto);
   }
+
+  void deleteById(int id) {
+    int result = _ref.read(productHttpRepository).deleteById(id);
+    if (result == 1) {
+      _ref.read(productListViewStore.notifier).removeProduct(id);
+    }
+  }
 }
